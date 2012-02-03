@@ -2,7 +2,15 @@ static var go : boolean = false;
 private var groundHitCount : int = 0;
 
 private var mph : int = 0;
-	
+
+public var speed : int = 10;
+
+public static var blueDiamonds : int = 0;
+public static var purpleDiamonds : int = 0;
+
+public static var blueLocations = new Array();
+public static var purpleLocations = new Array();
+
 function Awake()
 {
 	
@@ -14,19 +22,19 @@ function Update ()
 	{
 		if(Input.GetKey(KeyCode.UpArrow))
 		{
-			rigidbody.AddForce(Camera.main.transform.forward * 15);
+			rigidbody.AddForce(Vector3.forward * speed);
 		}
 		if(Input.GetKey(KeyCode.DownArrow))
 		{
-			rigidbody.AddForce (-Camera.main.transform.forward * 15);
+			rigidbody.AddForce (Vector3.back * speed);
 		}
 		if(Input.GetKey(KeyCode.LeftArrow))
 		{
-			rigidbody.AddForce (-Camera.main.transform.right * 15);
+			rigidbody.AddForce (Vector3.left * speed);
 		}
 		if(Input.GetKey(KeyCode.RightArrow))
 		{
-			rigidbody.AddForce (Camera.main.transform.right * 15);
+			rigidbody.AddForce (Vector3.right * speed);
 		}
 		if(Input.GetKeyDown(KeyCode.Space))
 		{

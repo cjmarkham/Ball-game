@@ -21,6 +21,8 @@ public class cameraFollow : MonoBehaviour
 	{
 		raycastLayers = ~ignoreLayers;
 	}
+	
+	public bool start = true;
 
 	void FixedUpdate()
 	{
@@ -28,7 +30,15 @@ public class cameraFollow : MonoBehaviour
 		currentVelocity = Vector3.Lerp(prevVelocity, target.root.rigidbody.velocity, Time.deltaTime);
 		currentVelocity.y = 0;
 		
-		prevVelocity = currentVelocity;
+		if(start)
+		{
+			prevVelocity = new Vector3(0,0,10);
+			start = false;
+		}
+		else
+		{
+			prevVelocity = currentVelocity;
+		}
 	}
 	
 	void LateUpdate()

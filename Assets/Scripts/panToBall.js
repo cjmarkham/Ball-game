@@ -1,7 +1,7 @@
 private var cameraFollow;
 
 public var ball : Transform;
-public var cameraPosition : Vector3;
+public var cameraPosition : Transform;
 
 public static var startPan : boolean;
 
@@ -10,7 +10,7 @@ public var duration : float = 30.0;
 
 function Update() 
 {
-	cameraFollow = GetComponent('cameraFollow');
+	cameraFollow = GameObject.Find('camera2').GetComponent('cameraFollow');
 	
 	if(startPan)
 	{
@@ -27,11 +27,12 @@ function Start()
 function pan()
 {
 	this.transform.LookAt(ball);
-	transform.position = Vector3.Lerp(transform.position, cameraPosition, (Time.time - startTime) / duration);
+	transform.position = Vector3.Lerp(transform.position, cameraPosition.position, (Time.time - startTime) / duration);
 	
 	transform.rotation.x = 0;
 	yield WaitForSeconds(2.5);
-	
-	cameraFollow.enabled = true;
+
+	GameObject.Find('camera2').GetComponent('Camera').enabled = true;
+	this.GetComponent('Camera').enabled = false;
 	startPan = false;
 }
