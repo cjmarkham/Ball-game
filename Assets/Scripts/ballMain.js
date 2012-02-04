@@ -20,21 +20,21 @@ function Update ()
 {
 	if(go)
 	{
-		if(Input.GetKey(KeyCode.UpArrow))
+		if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
 		{
-			rigidbody.AddForce(Vector3.forward * speed);
+			rigidbody.AddForce(Camera.main.transform.forward * speed);
 		}
-		if(Input.GetKey(KeyCode.DownArrow))
+		if(Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
 		{
-			rigidbody.AddForce (Vector3.back * speed);
+			rigidbody.AddForce (-Camera.main.transform.forward * speed);
 		}
-		if(Input.GetKey(KeyCode.LeftArrow))
+		if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
 		{
-			rigidbody.AddForce (Vector3.left * speed);
+			rigidbody.AddForce (-Camera.main.transform.right * speed);
 		}
-		if(Input.GetKey(KeyCode.RightArrow))
+		if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
 		{
-			rigidbody.AddForce (Vector3.right * speed);
+			rigidbody.AddForce (Camera.main.transform.right * speed);
 		}
 		if(Input.GetKeyDown(KeyCode.Space))
 		{

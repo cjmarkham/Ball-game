@@ -22,7 +22,7 @@ private var ready;
 
 var materials : Material[];
 
-static var totalPoints : int = 000000000;
+static var totalPoints : int = 00000;
 
 static var start = true;
 
@@ -60,17 +60,79 @@ function countDown()
 	{
 		panToBall.startPan = true;
 		started = true;
-		ready.text = "READY";
-		yield WaitForSeconds(1);
-		ready.text = "SET";
-		yield WaitForSeconds(1);
-		ready.text = "GO";
-		yield WaitForSeconds(0.2);
-		ready.enabled = false;
 		GameObject.Find('intro-back').guiTexture.enabled = false;
+		ready.enabled = false;
+	
+		GameObject.Find('READY').GetComponent('MeshRenderer').enabled = true;
+		
+		var t = 0.0;
+		var s = 0.0;
+		var e = 1.0;
+		var timer = 0.3;
+		var easeType = EaseType.In;
+		
+		while(t<1.0)
+		{
+			t += Time.deltaTime * (1.0/timer);
+			
+			GameObject.Find('READY').transform.localScale.x = Mathf.Lerp(s, e, Ease(t, easeType)) * .4;
+			GameObject.Find('READY').transform.localScale.y = Mathf.Lerp(s, e, Ease(t, easeType)) * .4;
+			GameObject.Find('READY').transform.localScale.z = Mathf.Lerp(s, e-0.5, Ease(t, easeType)) * .4;
+			yield;
+		}
+		
+		yield WaitForSeconds(1.2);
+		GameObject.Find('READY').GetComponent('MeshRenderer').enabled = false;
+		GameObject.Find('SET').GetComponent('MeshRenderer').enabled = true;
+		var t2 = 0.0;
+		var s2 = 0.0;
+		var e2 = 1.0;
+		var timer2 = 0.3;
+		while(t2<1.0)
+		{
+			t2 += Time.deltaTime * (1.0/timer2);
+			
+			GameObject.Find('SET').transform.localScale.x = Mathf.Lerp(s2, e2, Ease(t2, easeType)) * .4;
+			GameObject.Find('SET').transform.localScale.y = Mathf.Lerp(s2, e2, Ease(t2, easeType)) * .4;
+			GameObject.Find('SET').transform.localScale.z = Mathf.Lerp(s2, e2-0.5, Ease(t2, easeType)) * .4;
+			yield;
+		}
+		
+		
+		yield WaitForSeconds(1.2);
+		GameObject.Find('SET').GetComponent('MeshRenderer').enabled = false;
+		GameObject.Find('GO').GetComponent('MeshRenderer').enabled = true;
+		var t3 = 0.0;
+		var s3 = 0.0;
+		var e3 = 1.0;
+		var timer3 = 0.3;
+		while(t3<1.0)
+		{
+			t3 += Time.deltaTime * (1.0/timer3);
+			
+			GameObject.Find('GO').transform.localScale.x = Mathf.Lerp(s3, e3, Ease(t3, easeType)) * .4;
+			GameObject.Find('GO').transform.localScale.y = Mathf.Lerp(s3, e3, Ease(t3, easeType)) * .4;
+			GameObject.Find('GO').transform.localScale.z = Mathf.Lerp(s3, e3-0.5, Ease(t3, easeType)) * .4;
+			yield;
+		}
+		
+		yield WaitForSeconds(0.5);
+		GameObject.Find('GO').GetComponent('MeshRenderer').enabled = false;
+		
 		startTime = Time.time;
 		start = false;
 	}
+}
+
+private function Ease (t : float, easeType : EaseType) : float {
+    if (easeType == EaseType.None)
+        return t;
+    else if (easeType == EaseType.In)
+        return Mathf.Lerp(0.0, 1.0, 1.0 - Mathf.Cos(t * Mathf.PI * .5));
+    else if (easeType == EaseType.Out)
+        return Mathf.Lerp(0.0, 1.0, Mathf.Sin(t * Mathf.PI * .5));
+    else
+        return Mathf.SmoothStep(0.0, 1.0, t);
 }
 
 function Update () 
@@ -138,7 +200,7 @@ function OnGUI()
 		if(!start)
 		{ 
 			var carriedOver : int = totalPoints;
-			pointDisplay.text = totalPoints.ToString().PadLeft(9, "0"[0]);
+			pointDisplay.text = totalPoints.ToString().PadLeft(5, "0"[0]);
 			
 			if(collected <= needed)
 				collectedDisplay.text = collected+"/"+needed;
@@ -147,15 +209,9 @@ function OnGUI()
 			
 			var guiTime = Time.time - startTime;
 
-	   		var minutes : int = guiTime / 120;
-	   		var seconds : int = guiTime % 60;
-	   		var split : int = guiTime % 600;
-	   		
-	   		if(seconds == 60)
-	   			seconds = 0;
+	   		var seconds : int = guiTime;
 	   			
-	   		var fraction : int = (guiTime * 100) % 100;
-	   		textTime = String.Format ("{0:00}:{1:00}", minutes, seconds); 
+	   		textTime = String.Format ("{000}", seconds.ToString().PadLeft(3,"0"[0])); 
 	   		timer.text = textTime;
 	   		endTime = textTime;
 	   	}

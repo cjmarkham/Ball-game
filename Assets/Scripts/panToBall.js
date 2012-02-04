@@ -10,7 +10,7 @@ public var duration : float = 30.0;
 
 function Update() 
 {
-	cameraFollow = GameObject.Find('camera2').GetComponent('cameraFollow');
+	cameraFollow = GameObject.Find('camera').GetComponent('MouseOrbit');
 	
 	if(startPan)
 	{
@@ -29,10 +29,7 @@ function pan()
 	this.transform.LookAt(ball);
 	transform.position = Vector3.Lerp(transform.position, cameraPosition.position, (Time.time - startTime) / duration);
 	
-	transform.rotation.x = 0;
-	yield WaitForSeconds(2.5);
-
-	GameObject.Find('camera2').GetComponent('Camera').enabled = true;
-	this.GetComponent('Camera').enabled = false;
+	yield WaitForSeconds(3.3);
+	cameraFollow.enabled = true;
 	startPan = false;
 }
