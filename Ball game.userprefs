@@ -1,14 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\levelSettings.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\water.js">
     <Files>
-      <File FileName="Assets\Scripts\cameraFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\levelSettings.js" Line="25" Column="37" />
-      <File FileName="Assets\Scripts\pointController.js" Line="8" Column="17" />
+      <File FileName="Assets\Scripts\resetLevel.js" Line="10" Column="3" />
+      <File FileName="Assets\Scripts\finishLevel.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts\liftingPanel.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\resetLevel.js" Line="25" Column="80" />
-      <File FileName="Assets\Scripts\Fade.js" Line="89" Column="2" />
-      <File FileName="Assets\Scripts\ballMain.js" Line="48" Column="16" />
+      <File FileName="Assets\Scripts\levelSettings.js" Line="162" Column="37" />
+      <File FileName="Assets\Scripts\Fade.js" Line="26" Column="14" />
+      <File FileName="Assets\Scripts\panToBall.js" Line="32" Column="26" />
+      <File FileName="Assets\Scripts\pointController.js" Line="29" Column="4" />
+      <File FileName="Assets\Editor\Functions.js" Line="26" Column="21" />
+      <File FileName="Assets\Scripts\ballMain.js" Line="25" Column="22" />
+      <File FileName="Assets\Standard Assets\Detonator\System\Detonator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\water.js" Line="5" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

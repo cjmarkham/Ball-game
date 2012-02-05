@@ -124,17 +124,6 @@ function countDown()
 	}
 }
 
-private function Ease (t : float, easeType : EaseType) : float {
-    if (easeType == EaseType.None)
-        return t;
-    else if (easeType == EaseType.In)
-        return Mathf.Lerp(0.0, 1.0, 1.0 - Mathf.Cos(t * Mathf.PI * .5));
-    else if (easeType == EaseType.Out)
-        return Mathf.Lerp(0.0, 1.0, Mathf.Sin(t * Mathf.PI * .5));
-    else
-        return Mathf.SmoothStep(0.0, 1.0, t);
-}
-
 function Update () 
 {
 	if(Input.GetMouseButtonDown(0))
@@ -165,6 +154,17 @@ function Update ()
 		ball.renderer.material = materials[i];
 		i++; 
 	}
+}
+
+public static function Ease (t : float, easeType : EaseType) : float {
+    if (easeType == EaseType.None)
+        return t;
+    else if (easeType == EaseType.In)
+        return Mathf.Lerp(0.0, 1.0, 1.0 - Mathf.Cos(t * Mathf.PI * .5));
+    else if (easeType == EaseType.Out)
+        return Mathf.Lerp(0.0, 1.0, Mathf.Sin(t * Mathf.PI * .5));
+    else
+        return Mathf.SmoothStep(0.0, 1.0, t);
 }
 
 function OnGUI()
@@ -220,11 +220,12 @@ function OnGUI()
 	{
 		Time.timeScale = 0;
 		
+		endMessage.enabled = true;
+		GameObject.Find('endMessage-back').guiTexture.enabled = true;
+		
 		if(collected < needed)
         {
-        	endMessage.enabled = true;
-        	GameObject.Find('endMessage-back').guiTexture.enabled = true;
-        	endMessage.guiText.text = "You Failed\nPoints "+collected+"/"+needed;
+        	endMessage.guiText.text = "YOU FAILED\nPOINTS "+collected+"/"+needed;
 
 			GUI.skin = menuSkin;
 	        ScreenX = ((Screen.width * 0.5) - (areaWidth * 0.5));
@@ -255,9 +256,8 @@ function OnGUI()
         }
         else
         {
-        	endMessage.enabled = true;
-        	GameObject.Find('endMessage-back').guiTexture.enabled = true;
-	   		endMessage.text = "Complete\nTime: "+endTime;
+        	
+	   		endMessage.text = "COMPLETE\nTIME: "+endTime;
 	   		
 	   		GUI.skin = menuSkin;
 	        ScreenX = ((Screen.width * 0.5) - (areaWidth * 0.5));
@@ -288,4 +288,3 @@ function OnGUI()
 		}
 	}
 }
-

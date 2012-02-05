@@ -5,6 +5,10 @@ function OnTriggerEnter (other : Collider)
 {
 	if (other.name == "ball")
 	{
+		Camera.main.GetComponent('MouseOrbit').enabled = false;
+		
+		Camera.main.transform.LookAt(GameObject.Find('ball').transform);
+		
 		GameObject.Find('ballOutDisplay').guiText.enabled = true;
 	
 		animateBallOut();
